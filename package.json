@@ -1,10 +1,11 @@
 {
-  "name": "supercode",
+  "name": "supercode-cli",
   "version": "1.0.0",
-  "description": "Ultimate Developer-Oriented CLI & TUI AI Platform with Sub-Agent Orchestration",
+  "description": "🚀 Ultimate Developer-Oriented CLI & TUI AI Platform with Sub-Agent Orchestration",
   "main": "dist/index.js",
   "bin": {
-    "supercode": "./dist/index.js"
+    "supercode": "./dist/index.js",
+    "sc": "./dist/index.js"
   },
   "type": "module",
   "scripts": {
@@ -12,7 +13,9 @@
     "build": "tsdown src/index.ts --format esm",
     "start": "node dist/index.js",
     "lint": "eslint src --ext .ts",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run build",
+    "postinstall": "node scripts/postinstall.js || true"
   },
   "keywords": [
     "cli",
@@ -21,11 +24,31 @@
     "agent",
     "llm",
     "ollama",
+    "lmstudio",
     "mcp",
-    "developer-tools"
+    "developer-tools",
+    "coding-assistant",
+    "terminal",
+    "openai",
+    "anthropic",
+    "local-llm"
   ],
   "author": "SuperCode Team",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/supercode/supercode-cli.git"
+  },
+  "homepage": "https://github.com/supercode/supercode-cli#readme",
+  "bugs": {
+    "url": "https://github.com/supercode/supercode-cli/issues"
+  },
+  "files": [
+    "dist",
+    "scripts",
+    "README.md",
+    "LICENSE"
+  ],
   "dependencies": {
     "blessed": "^0.1.81",
     "blessed-contrib": "^4.11.0",
@@ -47,7 +70,17 @@
     "chokidar": "^4.0.1",
     "node-fetch": "^3.3.2",
     "ws": "^8.18.0",
-    "dayjs": "^1.11.13"
+    "dayjs": "^1.11.13",
+    "ink": "^5.0.1",
+    "ink-text-input": "^6.0.0",
+    "ink-select-input": "^6.0.0",
+    "ink-spinner": "^5.0.0",
+    "ink-table": "^3.1.0",
+    "react": "^18.3.1",
+    "ansi-escapes": "^7.0.0",
+    "terminal-kit": "^3.1.1",
+    "cli-highlight": "^2.1.11",
+    "strip-ansi": "^7.1.0"
   },
   "devDependencies": {
     "@types/blessed": "^0.1.25",
@@ -58,11 +91,13 @@
     "@types/node": "^22.10.2",
     "@types/uuid": "^10.0.0",
     "@types/ws": "^8.5.13",
+    "@types/react": "^18.3.12",
     "tsdown": "^0.2.17",
     "tsx": "^4.19.2",
     "typescript": "^5.7.2"
   },
   "engines": {
     "node": ">=20.0.0"
-  }
+  },
+  "preferGlobal": true
 }
